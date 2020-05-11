@@ -1,7 +1,7 @@
 #include "memory.h"
 #include <stdint.h>
 
-/* The instruction set of the 8085 micro-processor is defined here. */
+/* The instruction set of the 8085 micro-processor is declared here. */
 
 /* Restart Locations */
 typedef enum { RST_0, RST_1, RST_2, RST_3, RST_4, RST_5, RST_6, RST_7 } RestartLocation_t; 

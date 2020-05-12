@@ -1,5 +1,5 @@
+#include "registers.h"
 #include "memory.h"
-#include <stdint.h>
 
 /* The instruction set of the 8085 micro-processor is declared here. */
 
@@ -11,7 +11,7 @@ int MOV_RR(Register_t destinationRegister, Register_t sourceRegister);
 int MOV_RM(Register_t destinationRegister);
 int MOV_MR(Register_t sourceRegister);
 int MVI_RD(Register_t detinationRegister, int8_t data8);
-int MVI_MD(Mem_t destinationMemoryAddress, int8_t data8);
+int MVI_MD(int8_t data8);
 int LXI(Register16_t destinationRegisterPair, int16_t data16);
 int LDA(Mem_t sourceMemoryAddress);
 int STA(Mem_t destinationMemoryAddress);
@@ -75,6 +75,15 @@ int JM(Mem_t targetAddress);
 int JPE(Mem_t targetAddress); 
 int JPO(Mem_t targetAddress); 
 int CALL(Mem_t targetAddress);
+int CZ(Mem_t targetAddress); 
+int CNZ(Mem_t targetAddress); 
+int CC(Mem_t targetAddress); 
+int CNC(Mem_t targetAddress); 
+int CP(Mem_t targetAddress); 
+int CM(Mem_t targetAddress); 
+int CPE(Mem_t targetAddress); 
+int CPO(Mem_t targetAddress); 
+
 int RET();
 int RST(RestartLocation_t restartLocation);
 

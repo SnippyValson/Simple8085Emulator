@@ -7,12 +7,12 @@ int MOV_RR(Register_t destinationRegister, Register_t sourceRegister)
 	return 0;
 }
 
-int MOV_RM(Register_t destinationRegister, Mem_t sourceMemoryAddress)
+int MOV_RM(Register_t destinationRegister)
 {
 	return 0;
 }
 
-int MOV_MR(Mem_t destinationMemoryAddress, Register_t sourceRegister);
+int MOV_MR(Register_t sourceRegister)
 {
 	return 0;
 }
@@ -22,14 +22,14 @@ int MVI_RD(Register_t detinationRegister, int8_t data8)
  	return 0;
 }
 
-int MVI_MD(Mem_t destinationMemoryAddress, int8_t data8)
+int MVI_MD(int8_t data8)
 {
 	return 0;
 }
 
 int LXI(Register16_t destinationRegisterPair, int16_t data16)
 {
-	reurn 0;
+	return 0;
 }
 
 int LDA(Mem_t sourceMemoryAddress)
@@ -97,6 +97,11 @@ int ACI(int8_t data8)
 	return 0;
 }
 
+int DAD(Register16_t operandRegister)
+{
+	return 0;
+}
+
 int SUB(Register_t operandRegister)
 {
 	return 0;
@@ -112,7 +117,7 @@ int SBB(Register_t operandRegister)
 	return 0;
 }
 
-int SBB_M(
+int SBB_M()
 {
 	return 0;
 }
@@ -289,7 +294,7 @@ int JP(Mem_t targetAddress)
 
 int JM(Mem_t targetAddress)
 {
-	retrun 0;
+	return 0;
 }
 
 int JPE(Mem_t targetAddress)
@@ -306,6 +311,45 @@ int CALL(Mem_t targetAddress)
 {
 	return 0;
 }
+
+int CZ(Mem_t targetAddress)
+{
+	return 0;
+}
+ 
+int CNZ(Mem_t targetAddress)
+{
+	return 0;
+}
+
+int CC(Mem_t targetAddress)
+{
+	return 0;
+}
+
+int CNC(Mem_t targetAddress)
+{
+	return 0;
+}
+
+int CP(Mem_t targetAddress)
+{
+	return 0;
+} 
+int CM(Mem_t targetAddress)
+{
+	return 0;
+} 
+
+int CPE(Mem_t targetAddress)
+{
+	return 0;
+} 
+
+int CPO(Mem_t targetAddress)
+{
+	return 0;
+} 
 
 int RET()
 {
@@ -354,7 +398,7 @@ int HLT()
 
 int XTHL()
 {
-	retrun 0;
+	return 0;
 }
 
 int SPHL()

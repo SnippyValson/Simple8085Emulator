@@ -42,6 +42,9 @@
 *.idb
 *.pdb
 
+# Vim swap files
+*.swp
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd

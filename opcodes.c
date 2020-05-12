@@ -77,7 +77,7 @@ int op_ADD_H()
 
 int op_ADD_L()
 {
-	retrun ADD(r_L);
+	return ADD(r_L);
 }
 
 int op_ADD_M()
@@ -125,27 +125,27 @@ int op_ANA_L()
 	return ANA(r_L);
 }
 
-int op_ANA_M();
+int op_ANA_M()
 {
-	retrun ANA_M();
+	return ANA_M();
 }
 
-int op_ANI(int8_t data_8)
+int op_ANI(int8_t data8)
 {
 	return ANI(data8);
 }
 
-int op_CALL(uint16_t targetAddress)
+int op_CALL(Mem_t targetAddress)
 {
 	return CALL(targetAddress);
 }
 
-int op_CC(uint16_t targetAddress)
+int op_CC(Mem_t targetAddress)
 {
 	return CC(targetAddress);
 }
 
-int op_CM(uint16_t targetAddress)
+int op_CM(Mem_t targetAddress)
 {
 	return CM(targetAddress);
 }
@@ -200,22 +200,22 @@ int op_CMP_M()
 	return CMP_M();
 }
 
-int op_CNC(uint16_t targetAddress)
+int op_CNC(Mem_t targetAddress)
 {
 	return CNC(targetAddress);
 }
 
-int op_CNZ(uint16_t targetAddress)
+int op_CNZ(Mem_t targetAddress)
 {
 	return CNZ(targetAddress);
 }
 
-int op_CP(uint16_t targetAddress)
+int op_CP(Mem_t targetAddress)
 {
 	return CP(targetAddress);
 }
 
-int op_CPE(uint16_t targetAddress)
+int op_CPE(Mem_t targetAddress)
 {
 	return CPE(targetAddress);
 }
@@ -225,12 +225,12 @@ int op_CPI(int8_t data8)
 	return CPI(data8);
 }
 
-int op_CPO(uint16_t targetAddress)
+int op_CPO(Mem_t targetAddress)
 {
 	return CPO(targetAddress);
 }
 
-int op_CZ(uint16_t targetAddress)
+int op_CZ(Mem_t targetAddress)
 {
 	return CZ(targetAddress);
 }
@@ -282,12 +282,12 @@ int op_DCR_D()
 
 int op_DCR_E()
 {
-	retrun DCR(r_E);
+	return DCR(r_E);
 }
 
 int op_DCR_H()
 {
-	retrun DCR(r_H);
+	return DCR(r_H);
 }
 
 int op_DCR_L()
@@ -336,7 +336,7 @@ int op_HLT()
 	return HLT();
 }
 
-int op_IN(uint16_t portAddress)
+int op_IN(Mem_t portAddress)
 {
 	return IN(portAddress);
 }
@@ -358,7 +358,7 @@ int op_INR_C()
 
 int op_INR_D()
 {
-	retrun INR(r_D);
+	return INR(r_D);
 }
 
 int op_INR_E()
@@ -401,52 +401,52 @@ int op_INX_SP()
 	return INX(r_SP);
 }
 
-int op_JC(uint16_t targetAddress)
+int op_JC(Mem_t targetAddress)
 {
 	return JC(targetAddress);
 }
 
-int op_JM(uint16_t targetAddress)
+int op_JM(Mem_t targetAddress)
 {
 	return JM(targetAddress);
 }
 
-int op_JMP(uint16_t targetAddress)
+int op_JMP(Mem_t targetAddress)
 {
 	return JMP(targetAddress);
 }
 
-int op_JNC(uint16_t targetAddress)
+int op_JNC(Mem_t targetAddress)
 {
 	return JNC(targetAddress);
 }
 
-int op_JNZ(uint16_t targetAddress)
+int op_JNZ(Mem_t targetAddress)
 {
 	return JNZ(targetAddress);
 }
 
-int op_JP(uint16_t targetAddress)
+int op_JP(Mem_t targetAddress)
 {
 	return JP(targetAddress);
 }
 
-int op_JPE(uint16_t targetAddress)
+int op_JPE(Mem_t targetAddress)
 {
 	return JPE(targetAddress);
 }
 
-int op_JPO(uint16_t targetAddress)
+int op_JPO(Mem_t targetAddress)
 {
 	return JPO(targetAddress);
 }
 
-int op_JZ(uint16_t targetAddress)
+int op_JZ(Mem_t targetAddress)
 {
 	return JZ(targetAddress);
 }
 
-int op_LDA(uint16_t sourceAddress)
+int op_LDA(Mem_t sourceAddress)
 {
 	return LDA(sourceAddress);
 }
@@ -461,7 +461,7 @@ int op_LDAX_D()
 	return LDAX(r_DE);
 }
 
-int op_LHLD(uint16_t sourceAddress)
+int op_LHLD(Mem_t sourceAddress)
 {
 	return LHLD(sourceAddress);
 }
@@ -503,7 +503,7 @@ int op_MOV_AC()
 
 int op_MOV_AD()
 {
-	retrun MOV_RR(r_A, r_D);
+	return MOV_RR(r_A, r_D);
 }
 
 int op_MOV_AE()
@@ -523,7 +523,7 @@ int op_MOV_AL()
 
 int op_MOV_AM()
 {
-	return MOV_RM(r_A)
+	return MOV_RM(r_A);
 }
 
 int op_MOV_BA()
@@ -693,39 +693,158 @@ int op_MOV_HA()
 
 int op_MOV_HB()
 {
-	retrun MOV_RR(r_H, r_B);
+	return MOV_RR(r_H, r_B);
 }
 
-int op_MOV_HC();
-int op_MOV_HD();
-int op_MOV_HE();
-int op_MOV_HH();
-int op_MOV_HL();
-int op_MOV_HM();
-int op_MOV_LA();
-int op_MOV_LB();
-int op_MOV_LC();
-int op_MOV_LD();
-int op_MOV_LE();
-int op_MOV_LH();
-int op_MOV_LL();
-int op_MOV_LM();
-int op_MOV_MA();
-int op_MOV_MB();
-int op_MOV_MC();
-int op_MOV_MD();
-int op_MOV_ME();
-int op_MOV_MH();
-int op_MOV_ML();
-int op_MVI_A();
-int op_MVI_B();
-int op_MVI_C();
-int op_MVI_D();
-int op_MVI_E();
-int op_MVI_H();
-int op_MVI_L();
-int op_MVI_M();
-int NOP();
+int op_MOV_HC()
+{
+	return MOV_RR(r_H, r_C);
+}
+
+int op_MOV_HD()
+{
+	return MOV_RR(r_H, r_D);
+}
+
+int op_MOV_HE()
+{
+	return MOV_RR(r_H, r_E);
+}
+
+int op_MOV_HH()
+{
+	return MOV_RR(r_H, r_H);
+}
+
+int op_MOV_HL()
+{
+	return MOV_RR(r_H, r_L);
+}
+
+int op_MOV_HM()
+{
+	return MOV_RM(r_H);
+}
+
+int op_MOV_LA()
+{
+	return MOV_RR(r_L, r_A);
+}
+
+int op_MOV_LB()
+{
+	return MOV_RR(r_L, r_B);
+}
+
+int op_MOV_LC()
+{
+	return MOV_RR(r_L, r_C);
+}
+
+int op_MOV_LD()
+{
+	return MOV_RR(r_L, r_D);
+}
+
+int op_MOV_LE()
+{
+	return MOV_RR(r_L, r_E);
+}
+
+int op_MOV_LH()
+{
+	return MOV_RR(r_L, r_H);
+}
+
+int op_MOV_LL()
+{
+	return MOV_RR(r_L, r_L);
+}
+
+int op_MOV_LM()
+{
+	return MOV_RM(r_L);
+}
+
+int op_MOV_MA()
+{
+	return MOV_MR(r_A);
+}
+
+int op_MOV_MB()
+{
+	return MOV_MR(r_B);
+}
+
+int op_MOV_MC()
+{
+	return MOV_MR(r_C);
+}
+
+int op_MOV_MD()
+{
+	return MOV_MR(r_D);
+}
+
+int op_MOV_ME()
+{
+	return MOV_MR(r_E);
+}
+
+int op_MOV_MH()
+{
+	return MOV_MR(r_H);
+}
+
+int op_MOV_ML()
+{
+	return MOV_MR(r_L);
+}
+
+int op_MVI_A(int8_t data8)
+{
+	return MVI_RD(r_A, data8);
+}
+
+int op_MVI_B(int8_t data8)
+{
+	return MVI_RD(r_B, data8);
+}
+
+int op_MVI_C(int8_t data8)
+{
+	return MVI_RD(r_C, data8);
+}
+
+int op_MVI_D(int8_t data8)
+{
+	return MVI_RD(r_D, data8);
+}
+
+int op_MVI_E(int8_t data8)
+{
+	return MVI_RD(r_E, data8);
+}
+
+int op_MVI_H(int8_t data8)
+{
+	return MVI_RD(r_H, data8);
+}
+
+int op_MVI_L(int8_t data8)
+{
+	return MVI_RD(r_L, data8);
+}
+
+int op_MVI_M(int8_t data8)
+{
+	return MVI_MD(data8);
+}
+
+int op_NOP()
+{
+	return NOP();
+}
 int op_ORA_A();
 int op_ORA_B();
 int op_ORA_C();

@@ -8,8 +8,8 @@ typedef enum { RST_0, RST_1, RST_2, RST_3, RST_4, RST_5, RST_6, RST_7 } RestartL
 
 /* Data transfer instructions. */
 int MOV_RR(Register_t destinationRegister, Register_t sourceRegister);
-int MOV_RM(Register_t destinationRegister, Mem_t sourceMemoryAddress);
-int MOV_MR(Mem_t destinationMemoryAddress, Register_t sourceRegister);
+int MOV_RM(Register_t destinationRegister);
+int MOV_MR(Register_t sourceRegister);
 int MVI_RD(Register_t detinationRegister, int8_t data8);
 int MVI_MD(Mem_t destinationMemoryAddress, int8_t data8);
 int LXI(Register16_t destinationRegisterPair, int16_t data16);
@@ -28,6 +28,7 @@ int ADC(Register_t operandRegister);
 int ADC_M();
 int ADI(int8_t data8);
 int ACI(int8_t data8);
+int DAD(Register16_t operandRegister);
 int SUB(Register_t operandRegister);
 int SUB_M();
 int SBB(Register_t operandRegister);

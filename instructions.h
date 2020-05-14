@@ -23,6 +23,7 @@ int SHLD(Mem_t destinationRegisterAddress);
 int LDAX(register16_t sourceRegisterPair);
 int STAX(register16_t destinationRegisterPair);
 int XCHG();
+int PCHL();
 
 /* Arithemetic instructions. */
 int ADD(register8_t operandRegister);
@@ -88,6 +89,14 @@ int CPE(Mem_t targetAddress);
 int CPO(Mem_t targetAddress); 
 
 int RET();
+int RZ(); 
+int RNZ(); 
+int RC(); 
+int RNC(); 
+int RP(); 
+int RM(); 
+int RPE(); 
+int RPO(); 
 int RST(restartLocation_t restartLocation);
 
 /* Stack, I/O, and Machine Control Group. */

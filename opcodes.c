@@ -845,81 +845,389 @@ int op_NOP()
 {
 	return NOP();
 }
-int op_ORA_A();
-int op_ORA_B();
-int op_ORA_C();
-int op_ORA_D();
-int op_ORA_E();
-int op_ORA_H();
-int op_ORA_L();
-int op_ORA_M();
-int op_ORI(uint8_t data8);
-int op_OUT(uint16_t destinationPortAddress);
-int op_PCHL();
-int op_POP_B();
-int op_POP_D();
-int op_POP_H();
-int op_POP_PSW();
-int op_PUSH_B();
-int op_PUSH_D();
-int op_PUSH_H();
-int op_PUSH_PSW();
-int op_RAL();
-int op_RAR();
-int op_RC();
-int op_RET();
-int op_RIM();
-int op_RLC();
-int op_RM();
-int op_RNC();
-int op_RNZ();
-int op_RP();
-int op_RPE();
-int op_RPO();
-int op_RRC();
-int op_RST_0();
-int op_RST_1();
-int op_RST_2();
-int op_RST_3();
-int op_RST_4();
-int op_RST_5();
-int op_RST_6();
-int op_RST_7();
-int op_RZ();
-int op_SBB_A();
-int op_SBB_B();
-int op_SBB_C();
-int op_SBB_D();
-int op_SBB_E();
-int op_SBB_H();
-int op_SBB_L();
-int op_SBB_M();
-int op_SBI(int8_t data);
-int op_SHLD(uint16_t destinationAddress);
-int op_SIM();
-int op_SPHL();
-int op_STA(uint16_t destinationAddress);
-int op_STAX_B();
-int op_STAX_D();
-int op_STC();
-int op_SUB_A();
-int op_SUB_B();
-int op_SUB_C();
-int op_SUB_D();
-int op_SUB_E();
-int op_SUB_H();
-int op_SUB_L();
-int op_SUB_M();
-int op_SUI(int8_t data8);
-int op_XCHG();
-int op_XRA_A();
-int op_XRA_B();
-int op_XRA_C();
-int op_XRA_D();
-int op_XRA_E();
-int op_XRA_H();
-int op_XRA_L();
-int op_XRA_M();
-int op_XRI(int8_t data8);
-int op_XTHL();
+
+int op_ORA_A()
+{
+	return ORA(rA);
+}
+
+int op_ORA_B()
+{
+	return ORA(rB);
+}
+
+int op_ORA_C()
+{
+	return ORA(rC);
+}
+
+int op_ORA_D()
+{
+	return ORA(rD);
+}
+
+int op_ORA_E()
+{
+	return ORA(rE);
+}
+
+int op_ORA_H()
+{
+	return ORA(rH);
+}
+
+int op_ORA_L()
+{
+	return ORA(rL);
+}
+
+int op_ORA_M()
+{
+	return ORA_M();
+}
+
+int op_ORI(uint8_t data8)
+{
+	return ORI(data8);
+}
+
+int op_OUT(uint16_t destinationPortAddress)
+{
+	return OUT(destinationPortAddress);
+}
+
+int op_PCHL()
+{
+	return PCHL();
+}
+
+int op_POP_B()
+{
+	return POP(rBC);
+}
+
+int op_POP_D()
+{
+	return POP(rDE);
+}
+
+int op_POP_H()
+{
+	return POP(rHL);
+}
+
+int op_POP_PSW()
+{
+	return POP_PSW();
+}
+
+int op_PUSH_B()
+{
+	return PUSH(rBC);
+}
+
+int op_PUSH_D()
+{
+	return PUSH(rDE);
+}
+
+int op_PUSH_H()
+{
+	return PUSH(rHL);
+}
+
+int op_PUSH_PSW()
+{
+	return PUSH_PSW();
+}
+
+int op_RAL()
+{
+	return RAL();
+}
+
+int op_RAR()
+{
+	return RAR();
+}
+
+int op_RC()
+{
+	return RC();
+}
+
+int op_RET()
+{
+	return RET();
+}
+
+int op_RIM()
+{
+	return RIM();
+}
+
+int op_RLC()
+{
+	return RLC();
+}
+
+int op_RM()
+{
+	return RM();
+}
+
+int op_RNC()
+{
+	return RNC();
+}
+
+int op_RNZ()
+{
+	return RNZ();
+}
+
+int op_RP()
+{
+	return RP();
+}
+
+int op_RPE()
+{
+	return RPE();
+}
+
+int op_RPO()
+{
+	return RPO();
+}
+
+int op_RRC()
+{
+	return RRC();
+}
+
+int op_RST_0()
+{
+	return RST(RST0);
+}
+
+int op_RST_1()
+{
+	return RST(RST1);
+}
+
+int op_RST_2()
+{
+	return RST(RST2);
+}
+
+int op_RST_3()
+{
+	return RST(RST3);
+}
+
+int op_RST_4()
+{
+	return RST(RST4);
+}
+
+int op_RST_5()
+{
+	return RST(RST5);
+}
+
+int op_RST_6()
+{
+	return RST(RST6);
+}
+
+int op_RST_7()
+{
+	return RST(RST7);
+}
+
+int op_RZ()
+{
+	return RZ();
+}
+
+int op_SBB_A()
+{
+	return SBB(rA);
+}
+
+int op_SBB_B()
+{
+	return SBB(rB);
+}
+
+int op_SBB_C()
+{
+	return SBB(rC);
+}
+
+int op_SBB_D()
+{
+	return SBB(rD);
+}
+
+int op_SBB_E()
+{
+	return SBB(rE);
+}
+
+int op_SBB_H()
+{
+	return SBB(rH);
+}
+
+int op_SBB_L()
+{
+	return SBB(rL);
+}
+
+int op_SBB_M()
+{
+	return SBB_M();
+}
+
+int op_SBI(int8_t data8)
+{
+	return SBI(data8);
+}
+
+int op_SHLD(uint16_t destinationAddress)
+{
+	return SHLD(destinationAddress);
+}
+
+int op_SIM()
+{
+	return SIM();
+}
+
+int op_SPHL()
+{
+	return SPHL();
+}
+
+int op_STA(uint16_t destinationAddress)
+{
+	return STA(destinationAddress);
+}
+
+int op_STAX_B()
+{
+	return STAX(rBC);
+}
+
+int op_STAX_D()
+{
+	return STAX(rDE);
+}
+
+int op_STC()
+{
+	return STC();
+}
+
+int op_SUB_A()
+{
+	return SUB(rA);
+}
+
+int op_SUB_B()
+{
+	return SUB(rB);
+}
+
+int op_SUB_C()
+{
+	return SUB(rC);
+}
+
+int op_SUB_D()
+{
+	return SUB(rD);
+}
+
+int op_SUB_E()
+{
+	return SUB(rE);
+}
+
+int op_SUB_H()
+{
+	return SUB(rH);
+}
+
+int op_SUB_L()
+{
+	return SUB(rL);
+}
+
+int op_SUB_M()
+{
+	return SUB_M();
+}
+
+int op_SUI(int8_t data8)
+{
+	return SUI(data8);
+}
+
+int op_XCHG()
+{
+	return XCHG();
+}
+
+int op_XRA_A()
+{
+	return XRA(rA);
+}
+
+int op_XRA_B()
+{
+	return XRA(rB);
+}
+
+int op_XRA_C()
+{
+	return XRA(rC);
+}
+
+int op_XRA_D()
+{
+	return XRA(rD);
+}
+
+int op_XRA_E()
+{
+	return XRA(rE);
+}
+
+int op_XRA_H()
+{
+	return XRA(rH);
+}
+
+int op_XRA_L()
+{
+	return XRA(rL);
+}
+
+int op_XRA_M()
+{
+	return XRA_M();
+}
+
+int op_XRI(int8_t data8)
+{
+	return XRI(data8);
+}
+
+int op_XTHL()
+{
+	return XTHL();	
+}
 

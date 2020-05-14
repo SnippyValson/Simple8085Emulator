@@ -67,6 +67,11 @@ int XCHG()
 	return 0;
 }
 
+int PCHL()
+{
+	return 0;
+}
+
 int ADD(register8_t operandRegister)
 {
 	return 0;
@@ -355,6 +360,45 @@ int RET()
 {
 	return 0;
 }
+
+int RZ()
+{
+	return 0;
+}
+ 
+int RNZ()
+{
+	return 0;
+}
+
+int RC()
+{
+	return 0;
+}
+
+int RNC()
+{
+	return 0;
+}
+
+int RP()
+{
+	return 0;
+} 
+int RM()
+{
+	return 0;
+} 
+
+int RPE()
+{
+	return 0;
+} 
+
+int RPO()
+{
+	return 0;
+} 
 
 int RST(restartLocation_t restartLocation)
 {

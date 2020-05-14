@@ -5,7 +5,7 @@
 
 /* The main memory of 8085 goes here */
 
-typedef uint16_t Mem_t;
+typedef uint16_t mem_t;
 
 extern uint16_t memory[65535];
 

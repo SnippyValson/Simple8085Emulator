@@ -32,22 +32,22 @@ int LXI(register16_t destinationRegisterPair, int16_t data16)
 	return 0;
 }
 
-int LDA(Mem_t sourceMemoryAddress)
+int LDA(mem_t sourceMemoryAddress)
 {
 	return 0;
 }
 
-int STA(Mem_t destinationMemoryAddress)
+int STA(mem_t destinationMemoryAddress)
 {
 	return 0;
 }
 
-int LHLD(Mem_t sourceDestinationAddress)
+int LHLD(mem_t sourceDestinationAddress)
 {
 	return 0;
 }
 
-int SHLD(Mem_t destinationRegisterAddress)
+int SHLD(mem_t destinationRegisterAddress)
 {
 	return 0;
 }
@@ -267,91 +267,91 @@ int RAR()
 	return 0;
 }
 
-int JMP(Mem_t targetAddress)
+int JMP(mem_t targetAddress)
 {
 	return 0;
 }
 
-int JZ(Mem_t targetAddress)
+int JZ(mem_t targetAddress)
 {
 	return 0;
 }
 
-int JNZ(Mem_t targetAddress)
+int JNZ(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int JC(Mem_t targetAddress)
+int JC(mem_t targetAddress)
 {
 	return 0;
 }
 
-int JNC(Mem_t targetAddress)
+int JNC(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int JP(Mem_t targetAddress)
+int JP(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int JM(Mem_t targetAddress)
+int JM(mem_t targetAddress)
 {
 	return 0;
 }
 
-int JPE(Mem_t targetAddress)
+int JPE(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int JPO(Mem_t targetAddress)
+int JPO(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int CALL(Mem_t targetAddress)
+int CALL(mem_t targetAddress)
 {
 	return 0;
 }
 
-int CZ(Mem_t targetAddress)
+int CZ(mem_t targetAddress)
 {
 	return 0;
 }
  
-int CNZ(Mem_t targetAddress)
+int CNZ(mem_t targetAddress)
 {
 	return 0;
 }
 
-int CC(Mem_t targetAddress)
+int CC(mem_t targetAddress)
 {
 	return 0;
 }
 
-int CNC(Mem_t targetAddress)
+int CNC(mem_t targetAddress)
 {
 	return 0;
 }
 
-int CP(Mem_t targetAddress)
+int CP(mem_t targetAddress)
 {
 	return 0;
 } 
-int CM(Mem_t targetAddress)
-{
-	return 0;
-} 
-
-int CPE(Mem_t targetAddress)
+int CM(mem_t targetAddress)
 {
 	return 0;
 } 
 
-int CPO(Mem_t targetAddress)
+int CPE(mem_t targetAddress)
+{
+	return 0;
+} 
+
+int CPO(mem_t targetAddress)
 {
 	return 0;
 } 
@@ -405,12 +405,12 @@ int RST(restartLocation_t restartLocation)
 	return 0;
 }
 
-int IN(Mem_t sourcePortAddress)
+int IN(mem_t sourcePortAddress)
 {
 	return 0;
 }
 
-int OUT(Mem_t destinationPortAddress)
+int OUT(mem_t destinationPortAddress)
 {
 	return 0;
 }

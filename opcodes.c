@@ -135,17 +135,17 @@ int op_ANI(int8_t data8)
 	return ANI(data8);
 }
 
-int op_CALL(Mem_t targetAddress)
+int op_CALL(mem_t targetAddress)
 {
 	return CALL(targetAddress);
 }
 
-int op_CC(Mem_t targetAddress)
+int op_CC(mem_t targetAddress)
 {
 	return CC(targetAddress);
 }
 
-int op_CM(Mem_t targetAddress)
+int op_CM(mem_t targetAddress)
 {
 	return CM(targetAddress);
 }
@@ -200,22 +200,22 @@ int op_CMP_M()
 	return CMP_M();
 }
 
-int op_CNC(Mem_t targetAddress)
+int op_CNC(mem_t targetAddress)
 {
 	return CNC(targetAddress);
 }
 
-int op_CNZ(Mem_t targetAddress)
+int op_CNZ(mem_t targetAddress)
 {
 	return CNZ(targetAddress);
 }
 
-int op_CP(Mem_t targetAddress)
+int op_CP(mem_t targetAddress)
 {
 	return CP(targetAddress);
 }
 
-int op_CPE(Mem_t targetAddress)
+int op_CPE(mem_t targetAddress)
 {
 	return CPE(targetAddress);
 }
@@ -225,12 +225,12 @@ int op_CPI(int8_t data8)
 	return CPI(data8);
 }
 
-int op_CPO(Mem_t targetAddress)
+int op_CPO(mem_t targetAddress)
 {
 	return CPO(targetAddress);
 }
 
-int op_CZ(Mem_t targetAddress)
+int op_CZ(mem_t targetAddress)
 {
 	return CZ(targetAddress);
 }
@@ -336,7 +336,7 @@ int op_HLT()
 	return HLT();
 }
 
-int op_IN(Mem_t portAddress)
+int op_IN(mem_t portAddress)
 {
 	return IN(portAddress);
 }
@@ -401,52 +401,52 @@ int op_INX_SP()
 	return INX(rSP);
 }
 
-int op_JC(Mem_t targetAddress)
+int op_JC(mem_t targetAddress)
 {
 	return JC(targetAddress);
 }
 
-int op_JM(Mem_t targetAddress)
+int op_JM(mem_t targetAddress)
 {
 	return JM(targetAddress);
 }
 
-int op_JMP(Mem_t targetAddress)
+int op_JMP(mem_t targetAddress)
 {
 	return JMP(targetAddress);
 }
 
-int op_JNC(Mem_t targetAddress)
+int op_JNC(mem_t targetAddress)
 {
 	return JNC(targetAddress);
 }
 
-int op_JNZ(Mem_t targetAddress)
+int op_JNZ(mem_t targetAddress)
 {
 	return JNZ(targetAddress);
 }
 
-int op_JP(Mem_t targetAddress)
+int op_JP(mem_t targetAddress)
 {
 	return JP(targetAddress);
 }
 
-int op_JPE(Mem_t targetAddress)
+int op_JPE(mem_t targetAddress)
 {
 	return JPE(targetAddress);
 }
 
-int op_JPO(Mem_t targetAddress)
+int op_JPO(mem_t targetAddress)
 {
 	return JPO(targetAddress);
 }
 
-int op_JZ(Mem_t targetAddress)
+int op_JZ(mem_t targetAddress)
 {
 	return JZ(targetAddress);
 }
 
-int op_LDA(Mem_t sourceAddress)
+int op_LDA(mem_t sourceAddress)
 {
 	return LDA(sourceAddress);
 }
@@ -461,7 +461,7 @@ int op_LDAX_D()
 	return LDAX(rDE);
 }
 
-int op_LHLD(Mem_t sourceAddress)
+int op_LHLD(mem_t sourceAddress)
 {
 	return LHLD(sourceAddress);
 }

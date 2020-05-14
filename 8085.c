@@ -2,7 +2,40 @@
 #include "opcodes.h"
 #include <stdio.h>
 
-int main()
+void printMemory()
 {
-	return 0;
 }
+
+void printRegisters()
+{
+}
+
+void printStack()
+{
+}
+
+void loadHEX()
+{
+}
+
+void execute()
+{
+}
+
+void pauseExecution()
+{
+}
+
+void startDebug()
+{
+}
+
+void continueDebug()
+{
+}
+
+void stopDebug()
+{
+}
+
+

@@ -9,4 +9,4 @@ uint8_t H = 0;
 uint8_t L = 0;
 uint16_t PC = 0;
 uint16_t SP = 0;
-Flag_t   Flag;
+flag_t   flags;

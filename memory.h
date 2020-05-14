@@ -1,10 +1,14 @@
 #include <stdint.h>
 
+#ifndef _MEMORY_H_
+#define _MEMORY_H_
+
 /* The main memory of 8085 goes here */
 
 typedef uint16_t Mem_t;
 
-extern uint16_t Memory[65535];
+extern uint16_t memory[65535];
 
-int IntializeMemory();
+int intializeMemory();
 
+#endif

@@ -7,37 +7,37 @@ int op_ACI(int8_t data8)
 
 int op_ADC_A()
 {
-	return ADC(r_A);
+	return ADC(rA);
 }
 
 int op_ADC_B()
 {
-	return ADC(r_B);
+	return ADC(rB);
 }
 
 int op_ADC_C()
 {
-	return ADC(r_C);
+	return ADC(rC);
 }
 
 int op_ADC_D()
 {
-	return ADC(r_D);
+	return ADC(rD);
 }
 
 int op_ADC_E()
 {
-	return ADC(r_E);
+	return ADC(rE);
 }
 
 int op_ADC_H()
 {
-	return ADC(r_H);
+	return ADC(rH);
 }
 
 int op_ADC_L()
 {
-	return ADC(r_L);
+	return ADC(rL);
 }
 
 int op_ADC_M()
@@ -47,37 +47,37 @@ int op_ADC_M()
 
 int op_ADD_A()
 {
-	return ADD(r_A);
+	return ADD(rA);
 }
 
 int op_ADD_B()
 {
-	return ADD(r_B);
+	return ADD(rB);
 }
 
 int op_ADD_C()
 {
-	return ADD(r_C);
+	return ADD(rC);
 }
 
 int op_ADD_D()
 {
-	return ADD(r_D);
+	return ADD(rD);
 }
 
 int op_ADD_E()
 {
-	return ADD(r_E);
+	return ADD(rE);
 }
 
 int op_ADD_H()
 {
-	return ADD(r_H);
+	return ADD(rH);
 }
 
 int op_ADD_L()
 {
-	return ADD(r_L);
+	return ADD(rL);
 }
 
 int op_ADD_M()
@@ -92,37 +92,37 @@ int op_ADI(int8_t data8)
 
 int op_ANA_A()
 {
-	return ANA(r_A);
+	return ANA(rA);
 }
 
 int op_ANA_B()
 {
-	return ANA(r_B);
+	return ANA(rB);
 }
 
 int op_ANA_C()
 {
-	return ANA(r_C);
+	return ANA(rC);
 }
 
 int op_ANA_D()
 {
-	return ANA(r_D);
+	return ANA(rD);
 }
 
 int op_ANA_E()
 {
-	return ANA(r_E);
+	return ANA(rE);
 }
 
 int op_ANA_H()
 {
-	return ANA(r_H);
+	return ANA(rH);
 }
 
 int op_ANA_L()
 {
-	return ANA(r_L);
+	return ANA(rL);
 }
 
 int op_ANA_M()
@@ -162,37 +162,37 @@ int op_CMC()
 
 int op_CMP_A()
 {
-	return CMP(r_A);
+	return CMP(rA);
 }
 
 int op_CMP_B()
 {
-	return CMP(r_B);
+	return CMP(rB);
 }
 
 int op_CMP_C()
 {
-	return CMP(r_C);
+	return CMP(rC);
 }
 
 int op_CMP_D()
 {
-	return CMP(r_D);
+	return CMP(rD);
 }
 
 int op_CMP_E()
 {
-	return CMP(r_E);
+	return CMP(rE);
 }
 
 int op_CMP_H()
 {
-	return CMP(r_H);
+	return CMP(rH);
 }
 
 int op_CMP_L()
 {
-	return CMP(r_L);
+	return CMP(rL);
 }
 
 int op_CMP_M()
@@ -242,57 +242,57 @@ int op_DAA()
 
 int op_DAD_B()
 {
-	return DAD(r_BC);
+	return DAD(rBC);
 }
 
 int op_DAD_D()
 {
-	return DAD(r_DE);
+	return DAD(rDE);
 }
 
 int op_DAD_H()
 {
-	return DAD(r_HL);
+	return DAD(rHL);
 }
 
 int op_DAD_SP()
 {
-	return DAD(r_SP);
+	return DAD(rSP);
 }
 
 int op_DCR_A()
 {
-	return DCR(r_A);
+	return DCR(rA);
 }
 
 int op_DCR_B()
 {
-	return DCR(r_B);
+	return DCR(rB);
 }
 
 int op_DCR_C()
 {
-	return DCR(r_C);
+	return DCR(rC);
 }
 
 int op_DCR_D()
 {
-	return DCR(r_D);
+	return DCR(rD);
 }
 
 int op_DCR_E()
 {
-	return DCR(r_E);
+	return DCR(rE);
 }
 
 int op_DCR_H()
 {
-	return DCR(r_H);
+	return DCR(rH);
 }
 
 int op_DCR_L()
 {
-	return DCR(r_L);
+	return DCR(rL);
 }
 
 int op_DCR_M()
@@ -302,22 +302,22 @@ int op_DCR_M()
 
 int op_DCX_B()
 {
-	return DCX(r_BC);
+	return DCX(rBC);
 }
 
 int op_DCX_D()
 {
-	return DCX(r_DE);
+	return DCX(rDE);
 }
 
 int op_DCX_H()
 {
-	return DCX(r_HL);
+	return DCX(rHL);
 }
 
 int op_DCX_SP()
 {
-	return DCX(r_SP);
+	return DCX(rSP);
 }
 
 int op_DI()
@@ -343,37 +343,37 @@ int op_IN(Mem_t portAddress)
 
 int op_INR_A()
 {	
-	return INR(r_A);
+	return INR(rA);
 }
 
 int op_INR_B()
 {
-	return INR(r_B);
+	return INR(rB);
 }
 
 int op_INR_C()
 {
-	return INR(r_C);
+	return INR(rC);
 }
 
 int op_INR_D()
 {
-	return INR(r_D);
+	return INR(rD);
 }
 
 int op_INR_E()
 {
-	return INR(r_E);
+	return INR(rE);
 }
 
 int op_INR_H()
 {
-	return INR(r_H);
+	return INR(rH);
 }
 
 int op_INR_L()
 {
-	return INR(r_L);
+	return INR(rL);
 }
 
 int op_INR_M()
@@ -383,22 +383,22 @@ int op_INR_M()
 
 int op_INX_B()
 {
-	return INX(r_BC);
+	return INX(rBC);
 }
 
 int op_INX_D()
 {
-	return INX(r_DE);
+	return INX(rDE);
 }
 
 int op_INX_H()
 {
-	return INX(r_HL);
+	return INX(rHL);
 }
 
 int op_INX_SP()
 {
-	return INX(r_SP);
+	return INX(rSP);
 }
 
 int op_JC(Mem_t targetAddress)
@@ -453,12 +453,12 @@ int op_LDA(Mem_t sourceAddress)
 
 int op_LDAX_B()
 {
-	return LDAX(r_BC);
+	return LDAX(rBC);
 }
 
 int op_LDAX_D()
 {
-	return LDAX(r_DE);
+	return LDAX(rDE);
 }
 
 int op_LHLD(Mem_t sourceAddress)
@@ -468,372 +468,372 @@ int op_LHLD(Mem_t sourceAddress)
 
 int op_LXI_B(uint16_t data16)
 {
-	return LXI(r_BC, data16);
+	return LXI(rBC, data16);
 }
 
 int op_LXI_D(uint16_t data16)
 {
-	return LXI(r_DE, data16);
+	return LXI(rDE, data16);
 }
 
 int op_LXI_H(uint16_t data16)
 {
-	return LXI(r_HL, data16);
+	return LXI(rHL, data16);
 }
 
 int op_LXI_SP(uint16_t data16)
 {
-	return LXI(r_SP, data16);
+	return LXI(rSP, data16);
 }
 
 int op_MOV_AA()
 {
-	return MOV_RR(r_A, r_A);
+	return MOV_RR(rA, rA);
 }
 
 int op_MOV_AB()
 {
-	return MOV_RR(r_A, r_B);
+	return MOV_RR(rA, rB);
 }
 
 int op_MOV_AC()
 {
-	return MOV_RR(r_A, r_C);
+	return MOV_RR(rA, rC);
 }
 
 int op_MOV_AD()
 {
-	return MOV_RR(r_A, r_D);
+	return MOV_RR(rA, rD);
 }
 
 int op_MOV_AE()
 {
-	return MOV_RR(r_A, r_E);
+	return MOV_RR(rA, rE);
 }
 
 int op_MOV_AH()
 {
-	return MOV_RR(r_A, r_H);
+	return MOV_RR(rA, rH);
 }
 
 int op_MOV_AL()
 {
-	return MOV_RR(r_A, r_L);
+	return MOV_RR(rA, rL);
 }
 
 int op_MOV_AM()
 {
-	return MOV_RM(r_A);
+	return MOV_RM(rA);
 }
 
 int op_MOV_BA()
 {
-	return MOV_RR(r_B, r_A);
+	return MOV_RR(rB, rA);
 }
 
 int op_MOV_BB()
 {
-	return MOV_RR(r_B, r_B);
+	return MOV_RR(rB, rB);
 }
 
 int op_MOV_BC()
 {
-	return MOV_RR(r_B, r_C);
+	return MOV_RR(rB, rC);
 }
 
 int op_MOV_BD()
 {
-	return MOV_RR(r_B, r_D);
+	return MOV_RR(rB, rD);
 }
 
 int op_MOV_BE()
 {
-	return MOV_RR(r_B, r_E);
+	return MOV_RR(rB, rE);
 }
 
 int op_MOV_BH()
 {
-	return MOV_RR(r_B, r_H);
+	return MOV_RR(rB, rH);
 }
 
 int op_MOV_BL()
 {
-	return MOV_RR(r_B, r_L);
+	return MOV_RR(rB, rL);
 }
 
 int op_MOV_BM()
 {
-	return MOV_RM(r_B);
+	return MOV_RM(rB);
 }
 
 int op_MOV_CA()
 {
-	return MOV_RR(r_C, r_A);
+	return MOV_RR(rC, rA);
 }
 
 int op_MOV_CB()
 {
-	return MOV_RR(r_C, r_B);
+	return MOV_RR(rC, rB);
 }
 
 int op_MOV_CC()
 {
-	return MOV_RR(r_C, r_C);
+	return MOV_RR(rC, rC);
 }
 
 int op_MOV_CD()
 {
-	return MOV_RR(r_C, r_D);
+	return MOV_RR(rC, rD);
 }
 
 int op_MOV_CE()
 {
-	return MOV_RR(r_C, r_E);
+	return MOV_RR(rC, rE);
 }
 
 int op_MOV_CH()
 {
-	return MOV_RR(r_C, r_H);
+	return MOV_RR(rC, rH);
 }
 
 int op_MOV_CL()
 {
-	return MOV_RR(r_C, r_L);
+	return MOV_RR(rC, rL);
 }
 
 int op_MOV_CM()
 {
-	return MOV_RM(r_C);
+	return MOV_RM(rC);
 }
 
 int op_MOV_DA()
 {
-	return MOV_RR(r_D, r_A);
+	return MOV_RR(rD, rA);
 }
 
 int op_MOV_DB()
 {
-	return MOV_RR(r_D, r_B);
+	return MOV_RR(rD, rB);
 }
 
 int op_MOV_DC()
 {
-	return MOV_RR(r_D, r_C);
+	return MOV_RR(rD, rC);
 }
 
 int op_MOV_DD()
 {
-	return MOV_RR(r_D, r_D);
+	return MOV_RR(rD, rD);
 }
 
 int op_MOV_DE()
 {
-	return MOV_RR(r_D, r_E);
+	return MOV_RR(rD, rE);
 }
 
 int op_MOV_DH()
 {
-	return MOV_RR(r_D, r_H);
+	return MOV_RR(rD, rH);
 }
 
 int op_MOV_DL()
 {
-	return MOV_RR(r_D, r_L);
+	return MOV_RR(rD, rL);
 }
 
 int op_MOV_DM()
 {
-	return MOV_RM(r_D);
+	return MOV_RM(rD);
 }
 
 int op_MOV_EA()
 {
-	return MOV_RR(r_E, r_A);
+	return MOV_RR(rE, rA);
 }
 
 int op_MOV_EB()
 {
-	return MOV_RR(r_E, r_B);
+	return MOV_RR(rE, rB);
 }
 
 int op_MOV_EC()
 {
-	return MOV_RR(r_E, r_C);
+	return MOV_RR(rE, rC);
 }
 
 int op_MOV_ED()
 {
-	return MOV_RR(r_E, r_D);
+	return MOV_RR(rE, rD);
 }
 
 int op_MOV_EE()
 {
-	return MOV_RR(r_E, r_E);
+	return MOV_RR(rE, rE);
 }
 
 int op_MOV_EH()
 {
-	return MOV_RR(r_E, r_H);
+	return MOV_RR(rE, rH);
 }
 
 int op_MOV_EL()
 {
-	return MOV_RR(r_E, r_L);
+	return MOV_RR(rE, rL);
 }
 
 int op_MOV_EM()
 {	
-	return MOV_RM(r_E);
+	return MOV_RM(rE);
 }
 
 int op_MOV_HA()
 {
-	return MOV_RR(r_H, r_A);
+	return MOV_RR(rH, rA);
 }
 
 int op_MOV_HB()
 {
-	return MOV_RR(r_H, r_B);
+	return MOV_RR(rH, rB);
 }
 
 int op_MOV_HC()
 {
-	return MOV_RR(r_H, r_C);
+	return MOV_RR(rH, rC);
 }
 
 int op_MOV_HD()
 {
-	return MOV_RR(r_H, r_D);
+	return MOV_RR(rH, rD);
 }
 
 int op_MOV_HE()
 {
-	return MOV_RR(r_H, r_E);
+	return MOV_RR(rH, rE);
 }
 
 int op_MOV_HH()
 {
-	return MOV_RR(r_H, r_H);
+	return MOV_RR(rH, rH);
 }
 
 int op_MOV_HL()
 {
-	return MOV_RR(r_H, r_L);
+	return MOV_RR(rH, rL);
 }
 
 int op_MOV_HM()
 {
-	return MOV_RM(r_H);
+	return MOV_RM(rH);
 }
 
 int op_MOV_LA()
 {
-	return MOV_RR(r_L, r_A);
+	return MOV_RR(rL, rA);
 }
 
 int op_MOV_LB()
 {
-	return MOV_RR(r_L, r_B);
+	return MOV_RR(rL, rB);
 }
 
 int op_MOV_LC()
 {
-	return MOV_RR(r_L, r_C);
+	return MOV_RR(rL, rC);
 }
 
 int op_MOV_LD()
 {
-	return MOV_RR(r_L, r_D);
+	return MOV_RR(rL, rD);
 }
 
 int op_MOV_LE()
 {
-	return MOV_RR(r_L, r_E);
+	return MOV_RR(rL, rE);
 }
 
 int op_MOV_LH()
 {
-	return MOV_RR(r_L, r_H);
+	return MOV_RR(rL, rH);
 }
 
 int op_MOV_LL()
 {
-	return MOV_RR(r_L, r_L);
+	return MOV_RR(rL, rL);
 }
 
 int op_MOV_LM()
 {
-	return MOV_RM(r_L);
+	return MOV_RM(rL);
 }
 
 int op_MOV_MA()
 {
-	return MOV_MR(r_A);
+	return MOV_MR(rA);
 }
 
 int op_MOV_MB()
 {
-	return MOV_MR(r_B);
+	return MOV_MR(rB);
 }
 
 int op_MOV_MC()
 {
-	return MOV_MR(r_C);
+	return MOV_MR(rC);
 }
 
 int op_MOV_MD()
 {
-	return MOV_MR(r_D);
+	return MOV_MR(rD);
 }
 
 int op_MOV_ME()
 {
-	return MOV_MR(r_E);
+	return MOV_MR(rE);
 }
 
 int op_MOV_MH()
 {
-	return MOV_MR(r_H);
+	return MOV_MR(rH);
 }
 
 int op_MOV_ML()
 {
-	return MOV_MR(r_L);
+	return MOV_MR(rL);
 }
 
 int op_MVI_A(int8_t data8)
 {
-	return MVI_RD(r_A, data8);
+	return MVI_RD(rA, data8);
 }
 
 int op_MVI_B(int8_t data8)
 {
-	return MVI_RD(r_B, data8);
+	return MVI_RD(rB, data8);
 }
 
 int op_MVI_C(int8_t data8)
 {
-	return MVI_RD(r_C, data8);
+	return MVI_RD(rC, data8);
 }
 
 int op_MVI_D(int8_t data8)
 {
-	return MVI_RD(r_D, data8);
+	return MVI_RD(rD, data8);
 }
 
 int op_MVI_E(int8_t data8)
 {
-	return MVI_RD(r_E, data8);
+	return MVI_RD(rE, data8);
 }
 
 int op_MVI_H(int8_t data8)
 {
-	return MVI_RD(r_H, data8);
+	return MVI_RD(rH, data8);
 }
 
 int op_MVI_L(int8_t data8)
 {
-	return MVI_RD(r_L, data8);
+	return MVI_RD(rL, data8);
 }
 
 int op_MVI_M(int8_t data8)

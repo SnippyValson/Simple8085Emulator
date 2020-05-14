@@ -1,5 +1,8 @@
 #include <stdint.h>
 
+#ifndef _REGISTERS_H_
+#define _REGISTERS_H_
+
 /* The rigisters of the 8085 micro-processor goes here. */
 
 extern uint8_t A;
@@ -13,19 +16,20 @@ extern uint16_t PC;
 extern uint16_t SP;
 
 typedef struct {
-	uint8_t Sign : 1;
-	uint8_t Zero : 1;
-	uint8_t Filler0 : 1;
-	uint8_t AuxillaryCarry : 1;
-	uint8_t Filler1 : 1;
-	uint8_t Parity : 1;
-	uint8_t Filler2 : 1;
-	uint8_t Carry : 1;
-} Flag_t;
+	uint8_t sign : 1;
+	uint8_t zero : 1;
+	uint8_t filler0 : 1;
+	uint8_t auxillaryCarry : 1;
+	uint8_t filler1 : 1;
+	uint8_t parity : 1;
+	uint8_t filler2 : 1;
+	uint8_t carry : 1;
+} flag_t;
 
-typedef enum { r_A, r_B, r_C, r_D, r_E, r_H, r_L, r_Flag } Register_t;
+typedef enum { rA, rB, rC, rD, rE, rH, rL, rFlag } register8_t;
 
-typedef enum { r_BC, r_DE, r_HL, r_PC, r_SP } Register16_t;
+typedef enum { rBC, rDE, rHL, rPC, rSP } register16_t;
 
-extern Flag_t Flags;
+extern flag_t flags;
 
+#endif

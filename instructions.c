@@ -2,22 +2,22 @@
 
 #include "instructions.h"
 
-int MOV_RR(Register_t destinationRegister, Register_t sourceRegister)
+int MOV_RR(register8_t destinationRegister, register8_t sourceRegister)
 {
 	return 0;
 }
 
-int MOV_RM(Register_t destinationRegister)
+int MOV_RM(register8_t destinationRegister)
 {
 	return 0;
 }
 
-int MOV_MR(Register_t sourceRegister)
+int MOV_MR(register8_t sourceRegister)
 {
 	return 0;
 }
 
-int MVI_RD(Register_t detinationRegister, int8_t data8)
+int MVI_RD(register8_t detinationRegister, int8_t data8)
 {
  	return 0;
 }
@@ -27,7 +27,7 @@ int MVI_MD(int8_t data8)
 	return 0;
 }
 
-int LXI(Register16_t destinationRegisterPair, int16_t data16)
+int LXI(register16_t destinationRegisterPair, int16_t data16)
 {
 	return 0;
 }
@@ -52,12 +52,12 @@ int SHLD(Mem_t destinationRegisterAddress)
 	return 0;
 }
 
-int LDAX(Register16_t sourceRegisterPair)
+int LDAX(register16_t sourceRegisterPair)
 {
 	return 0;
 }
 
-int STAX(Register16_t destinationRegisterPair)
+int STAX(register16_t destinationRegisterPair)
 {
 	return 0;
 }
@@ -67,7 +67,7 @@ int XCHG()
 	return 0;
 }
 
-int ADD(Register_t operandRegister)
+int ADD(register8_t operandRegister)
 {
 	return 0;
 }
@@ -77,7 +77,7 @@ int ADD_M()
 	return 0;
 }
 
-int ADC(Register_t operandRegister)
+int ADC(register8_t operandRegister)
 {
 	return 0;
 }
@@ -97,12 +97,12 @@ int ACI(int8_t data8)
 	return 0;
 }
 
-int DAD(Register16_t operandRegister)
+int DAD(register16_t operandRegister)
 {
 	return 0;
 }
 
-int SUB(Register_t operandRegister)
+int SUB(register8_t operandRegister)
 {
 	return 0;
 }
@@ -112,7 +112,7 @@ int SUB_M()
  	return 0;
 }
 
-int SBB(Register_t operandRegister)
+int SBB(register8_t operandRegister)
 {
 	return 0;
 }
@@ -132,7 +132,7 @@ int SBI(int8_t data8)
  	return 0;
 }
 
-int INR(Register_t operandRegister)
+int INR(register8_t operandRegister)
 {
 	return 0;
 }
@@ -142,7 +142,7 @@ int INR_M()
  	return 0;
 }
 
-int DCR(Register_t operandRegister)
+int DCR(register8_t operandRegister)
 {
 	return 0;
 }
@@ -152,12 +152,12 @@ int DCR_M()
 	return 0;
 }
 
-int INX(Register16_t operandRegister)
+int INX(register16_t operandRegister)
 {
 	return 0;
 }
 
-int DCX(Register16_t operandRegister)
+int DCX(register16_t operandRegister)
 {
 	return 0;
 }
@@ -167,7 +167,7 @@ int DAA()
 	return 0;
 }
 
-int ANA(Register_t operandRegister)
+int ANA(register8_t operandRegister)
 {
 	return 0;
 }
@@ -182,7 +182,7 @@ int ANI(int8_t data)
 	return 0;
 }
 
-int ORA(Register_t operandRegister)
+int ORA(register8_t operandRegister)
 {
 	return 0;
 }
@@ -197,7 +197,7 @@ int ORI(int8_t data)
 	return 0;
 }
 
-int XRA(Register_t operandRegister)
+int XRA(register8_t operandRegister)
 {
 	return 0;
 }
@@ -227,7 +227,7 @@ int STC()
 	return 0;
 }
 
-int CMP(Register_t operandRegister)
+int CMP(register8_t operandRegister)
 {
 	return 0;
 }
@@ -356,7 +356,7 @@ int RET()
 	return 0;
 }
 
-int RST(RestartLocation_t restartLocation)
+int RST(restartLocation_t restartLocation)
 {
 	return 0;
 }
@@ -371,7 +371,7 @@ int OUT(Mem_t destinationPortAddress)
 	return 0;
 }
 
-int PUSH(Register16_t destinationRegister)
+int PUSH(register16_t destinationRegister)
 {
 	return 0;
 }
@@ -381,7 +381,7 @@ int PUSH_PSW()
 	return 0;
 }
 
-int POP(Register16_t sourceResgister)
+int POP(register16_t sourceResgister)
 {
 	return 0;
 }

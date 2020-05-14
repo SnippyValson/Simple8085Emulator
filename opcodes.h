@@ -1,5 +1,8 @@
 #include "instructions.h"
 
+#ifndef _OPCODES_H_
+#define _OPCODES_H_
+
 /* The opcodes derived from instructions goes here. */
 
 int op_ACI(int8_t data8);
@@ -249,3 +252,4 @@ int op_XRA_M();
 int op_XRI(int8_t data8);
 int op_XTHL();
 
+#endif

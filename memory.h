@@ -7,7 +7,7 @@
 
 typedef uint16_t mem_t;
 
-extern uint16_t memory[65535];
+extern uint8_t memory[65535];
 
 int intializeMemory();
 

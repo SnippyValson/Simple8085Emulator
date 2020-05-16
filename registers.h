@@ -5,7 +5,7 @@
 
 /* The rigisters of the 8085 micro-processor goes here. */
 
-// Represents the 8 bit general purpose registers.
+/* Represents the 8 bit general purpose registers. */
 typedef struct {
 	 uint8_t B;
 	 uint8_t C;
@@ -15,21 +15,22 @@ typedef struct {
 	 uint8_t L;
 	} registers8_t;
 
-// Represents the 16 bit general purpose registers.
+/* Represents the 16 bit general purpose registers. */
 typedef struct {
 	uint16_t BC;
 	uint16_t DE;
 	uint16_t HL;
 	} registers16_t;
-
-// Since 16 bit registers are to the corresponding two 8 bit registers combined,
-// a union is used as an interface for the data.
+/*
+ * Since 16 bit registers are to the corresponding two 8 bit registers combined,
+ * a union is used as an interface for the data.
+ */
 typedef union {
 	registers8_t registers8;
 	registers16_t registers16;
 	} registersg_t;
 
-// Represents the flags. 
+/* Represents the flags. */
 typedef struct {
 	uint8_t sign : 1;
 	uint8_t zero : 1;
@@ -40,9 +41,10 @@ typedef struct {
 	uint8_t filler2 : 1;
 	uint8_t carry : 1;
 	} flag_t;
-
-// Represents the entire registers of 8085.
-// The accumulator, general purpose registers, stack pointer, program counter and the flag register.
+/*
+ * Represents the entire registers of 8085.
+ * The accumulator, general purpose registers, stack pointer, program counter and the flag register.
+ */
 typedef struct {
 	uint8_t 	A;
 	registersg_t 	general;
@@ -51,22 +53,22 @@ typedef struct {
 	flag_t 		FLAGS;
 	} registers_t;	
 
-// Used to identify each of the 8 bit registers.
+/* Used to identify each of the 8 bit registers. */
 typedef enum { rA, rB, rC, rD, rE, rH, rL, rFlag } register8_t;
 
-// used to identify each of the 18 bit registers.
+/* used to identify each of the 18 bit registers. */
 typedef enum { rBC, rDE, rHL, rPC, rSP } register16_t;
 
-// The registers.
+/* The registers. */
 extern registers_t registers;
 
-// Returns a pointer to the 8-bit register identified by 'registerName'.
-uint8_t* getRegisters8(register8_t registerName);
+/* Returns a pointer to the 8-bit register identified by 'registerName'. */
+uint8_t* getRegister8Address(register8_t registerName);
 
-// Returns a pointer to the 16-bit register identified by 'registerName'.
-uint16_t* getRegister16(register16_t registerName);
+/* Returns a pointer to the 16-bit register identified by 'registerName'. */
+uint16_t* getRegister16Address(register16_t registerName);
 
-// Returns a pointer to the entire flag register.
-flag_t* getFlags();
+/* Returns a pointer to the entire flag register. */
+flag_t* getFlagsAddress();
 
 #endif

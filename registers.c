@@ -32,7 +32,7 @@ uint16_t* getRegister16(register16_t registerName)
 	return 0;
 }
 
-flag_t* getFlags()
+flag_t* getFlagsAddress()
 {
 	return &(registers.FLAGS);
 }

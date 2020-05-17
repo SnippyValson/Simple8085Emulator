@@ -331,96 +331,237 @@ int XRI(uint8_t data)
 
 int CMA()
 {
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	*accumulatorAddress = ~(*accumulatorAddress);
 	return 0;
 }
 
 int CMC()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	flagAddress->carry = ~(flagAddress->carry);
 	return 0;
 }
 
 int STC()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	flagAddress->carry = 1;
 	return 0;
 }
 
 int CMP(register8_t operandRegister)
 {
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
+	flag_t* flagAddress = getFlagsAddress();
+	if(*accumulatorAddress == *operandRegisterAddress)
+	{
+		flagAddress->zero = 1;
+		flagAddress->carry = 0;
+	}
+	else if(*accumulatorAddress < *operandRegisterAddress)
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 1;
+	}
+	else if(*accumulatorAddress > *operandRegisterAddress)
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 0;
+	}
 	return 0;
 }
 
 int CMP_M()
 {
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	uint16_t* hlAddress = getRegister16Address(rHL);
+	flag_t* flagAddress = getFlagsAddress();
+	if(*accumulatorAddress == memory[*hlAddress])
+	{
+		flagAddress->zero = 1;
+		flagAddress->carry = 0;
+	}
+	else if(*accumulatorAddress < memory[*hlAddress])
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 1;
+	}
+	else if(*accumulatorAddress > memory[*hlAddress])
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 0;
+	}
 	return 0;
 }
 
-int CPI(uint8_t data)
+int CPI(uint8_t data8)
 {
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	flag_t* flagAddress = getFlagsAddress();
+	if(*accumulatorAddress == data8)
+	{
+		flagAddress->zero = 1;
+		flagAddress->carry = 0;
+	}
+	else if(*accumulatorAddress < data8)
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 1;
+	}
+	else if(*accumulatorAddress > data8)
+	{
+		flagAddress->zero = 0;
+		flagAddress->carry = 0;
+	}
 	return 0;
 }
 
 int RLC()
 {
+	uint8_t NUM_BITS = 7;
+	uint8_t DROPPED_MSB = 0;	
+	uint8_t MSB = 0;
+	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	uint8_t* flagAddress = getFlagsAddress();
+	DROPPED_MSB = (*accumulatorAddress >> NUM_BITS) & 1;
+	*accumulatorAddress = (*accumulatorAddress << 1) | DROPPED_MSB;
+	MSB = (*accumulatorAddress >> NUM_BITS) & 1;
+	flagAddress->carry = MSB;
 	return 0;
 }
 
 int RRC()
 {
+	uint8_t NUM_BITS = 7;
+	uint8_t DROPPED_LSB = 0;	
+	uint8_t MSB = 0;
+	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	DROPPED_LSB = *accumulatorAddress & 1;
+	*accumulatorAddress = *accumulatorAddress >> 1;
+	*accumulatorAddress = *accumulatorAddress & (~(1 << NUM_BITS));
+	*accumulatorAddress = *accumulatorAddress | (DROPPED_LSB << NUM_BITS);
+	MSB = (*accumulatorAddress >> NUM_BITS) & 1;
+	flagAddress->carry = MSB;
 	return 0;
 }
 
 int RAL()
 {
+	uint8_t NUM_BITS = 7;
+	uint8_t DROPPED_MSB = 0;	
+	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	uint8_t* flagAddress = getFlagsAddress();
+	DROPPED_MSB = (*accumulatorAddress >> NUM_BITS) & 1;
+	*accumulatorAddress = (*accumulatorAddress << 1) | DROPPED_MSB;
 	return 0;
 }
 
 int RAR()
 {
+	uint8_t NUM_BITS = 7;
+	uint8_t DROPPED_LSB = 0;	
+	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	DROPPED_LSB = *accumulatorAddress & 1;
+	*accumulatorAddress = *accumulatorAddress >> 1;
+	*accumulatorAddress = *accumulatorAddress & (~(1 << NUM_BITS));
+	*accumulatorAddress = *accumulatorAddress | (DROPPED_LSB << NUM_BITS);
 	return 0;
 }
 
 int JMP(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	*pcAddress = targetAddress;
 	return 0;
 }
 
 int JZ(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 1)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 }
 
 int JNZ(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 0)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 } 
 
 int JC(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 1)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 }
 
 int JNC(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 0)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 } 
 
 int JP(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 0)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 } 
 
 int JM(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 1)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 }
 
 int JPE(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->parity == 1)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 } 
 
 int JPO(mem_t targetAddress)
 {
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->parity == 0)
+	{
+		*pcAddress = targetAddress;
+	}
 	return 0;
 } 
 

@@ -1,5 +1,6 @@
 /* The instruction set of the 8085 micro-processor is defined here. */ 
 #include "instructions.h"
+#include "stack.h"
 
 int MOV_RR(register8_t destinationRegister, register8_t sourceRegister)
 {
@@ -13,7 +14,7 @@ int MOV_RM(register8_t destinationRegister)
 {
 	uint16_t* hlAddress = getRegister16Address(rHL);
 	uint8_t* destinationRegisterAddress = getRegister8Address(destinationRegister);
-	*destinationRegisterAddress = memory[*hlRegisterAddress];
+	*destinationRegisterAddress = memory[*hlAddress];
 	return 0;
 }
 
@@ -25,7 +26,7 @@ int MOV_MR(register8_t sourceRegister)
 	return 0;
 }
 
-int MVI_RD(register8_t detinationRegister, uint8_t data8)
+int MVI_RD(register8_t destinationRegister, uint8_t data8)
 {	
 	uint8_t* destinationRegisterAddress = getRegister8Address(destinationRegister);
 	*destinationRegisterAddress = data8;
@@ -48,7 +49,7 @@ int LXI(register16_t destinationRegisterPair, uint16_t data16)
 
 int LDA(mem_t sourceMemoryAddress)
 {
-	uint8_t* accumulatorAddress = getRegiste8Address(rA);
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	*accumulatorAddress = memory[sourceMemoryAddress];
 	return 0;
 }
@@ -78,14 +79,14 @@ int LDAX(register16_t sourceRegisterPair)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* sourceRegisterAddress = getRegister16Address(sourceRegisterPair);
-	*accumulatorAddress = memory[*sourceRegsiterAddress];
+	*accumulatorAddress = memory[*sourceRegisterAddress];
 	return 0;
 }
 
 int STAX(register16_t destinationRegisterPair)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	uint16_t* destinationRegisterAddress(destinationRegisterPair);
+	uint16_t* destinationAddressPair = getRegister16Address(destinationRegisterPair);
 	memory[*destinationAddressPair] = *accumulatorAddress;
 	return 0;
 }
@@ -104,7 +105,7 @@ int PCHL()
 {
 	uint16_t* hlAddress = getRegister16Address(rHL);
 	uint16_t* pcAddress = getRegister16Address(rPC);
-	*hlAddress = *PCAddress;
+	*hlAddress = *pcAddress;
 	return 0;
 }
 
@@ -129,7 +130,7 @@ int ADC(register8_t operandRegister)
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
 	flag_t* flagAddress = getFlagsAddress();
-	uint8_t carry = *flagAddress->carry; 
+	uint8_t carry = flagAddress->carry; 
 	*accumulatorAddress = *accumulatorAddress + *operandRegisterAddress + carry;
 	return 0;
 }
@@ -138,7 +139,8 @@ int ADC_M()
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	uint8_t carry = *flagAddress->carry; 
+	flag_t* flagAddress = getFlagsAddress();
+	uint8_t carry = flagAddress->carry;  
 	*accumulatorAddress = *accumulatorAddress + memory[*hlAddress] + carry;
 	return 0;
 }
@@ -153,7 +155,8 @@ int ADI(uint8_t data8)
 int ACI(uint8_t data8)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	uint8_t carry = *flagAddress->carry; 
+	flag_t* flagAddress = getFlagsAddress();
+	uint8_t carry = flagAddress->carry; 
 	*accumulatorAddress = *accumulatorAddress + data8 + carry;
 	return 0;
 }
@@ -184,7 +187,7 @@ int SBB(register8_t operandRegister)
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
 	flag_t* flagAddress = getFlagsAddress();
-	uint8_t borrow = *flagAddress->carry; 
+	uint8_t borrow = flagAddress->carry; 
 	*accumulatorAddress = *accumulatorAddress - *operandRegisterAddress - borrow;
 	return 0;
 }
@@ -193,7 +196,8 @@ int SBB_M()
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	uint8_t borrow = *flagAddress->carry; 
+	flag_t* flagAddress = getFlagsAddress();
+	uint8_t borrow = flagAddress->carry; 
 	*accumulatorAddress = *accumulatorAddress - memory[*hlAddress] - borrow;
 	return 0;
 }
@@ -208,7 +212,8 @@ int SUI(uint8_t data8)
 int SBI(uint8_t data8)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	uint8_t borrow = *flagAddress->carry; 
+	flag_t* flagAddress = getFlagsAddress();
+	uint8_t borrow = flagAddress->carry; 
 	*accumulatorAddress = *accumulatorAddress - data8 - borrow;
  	return 0;
 }
@@ -216,13 +221,13 @@ int SBI(uint8_t data8)
 int INR(register8_t operandRegister)
 {
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	*operandRegisterAddress++;
+	(*operandRegisterAddress)++;
 	return 0;
 }
 
 int INR_M()
 {
-	uint16_t* hlAddress = getRegsiter16Address(rHL);
+	uint16_t* hlAddress = getRegister16Address(rHL);
 	memory[*hlAddress]++;
  	return 0;
 }
@@ -230,13 +235,13 @@ int INR_M()
 int DCR(register8_t operandRegister)
 {
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	*operandRegisterAddress--;
+	(*operandRegisterAddress)--;
 	return 0;
 }
 
 int DCR_M()
 {
-	uint16_t* hlAddress = getRegsiter16Address(rHL);
+	uint16_t* hlAddress = getRegister16Address(rHL);
 	memory[*hlAddress]--;
 	return 0;
 }
@@ -244,14 +249,14 @@ int DCR_M()
 int INX(register16_t operandRegister)
 {
 	uint16_t* operandRegisterAddress = getRegister16Address(operandRegister);
-	*operandRegisterAddress++;
+	(*operandRegisterAddress)++;
 	return 0;
 }
 
 int DCX(register16_t operandRegister)
 {
 	uint16_t* operandRegisterAddress = getRegister16Address(operandRegister);
-	*operandRegisterAddress--;
+	(*operandRegisterAddress)--;
 	return 0;
 }
 
@@ -276,7 +281,7 @@ int ANA_M()
 	return 0;
 }
 
-int ANI(uint8_t data)
+int ANI(uint8_t data8)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	*accumulatorAddress = *accumulatorAddress & data8;
@@ -299,7 +304,7 @@ int ORA_M()
 	return 0;
 }
 
-int ORI(uint8_t data)
+int ORI(uint8_t data8)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	*accumulatorAddress = *accumulatorAddress | data8;
@@ -322,7 +327,7 @@ int XRA_M()
 	return 0;
 }
 
-int XRI(uint8_t data)
+int XRI(uint8_t data8)
 {
 	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	*accumulatorAddress = *accumulatorAddress ^ data8;
@@ -423,8 +428,8 @@ int RLC()
 	uint8_t NUM_BITS = 7;
 	uint8_t DROPPED_MSB = 0;	
 	uint8_t MSB = 0;
-	uint8_t* accumulatorAddress = getRegisterAddress(rA);
-	uint8_t* flagAddress = getFlagsAddress();
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	flag_t* flagAddress = getFlagsAddress();
 	DROPPED_MSB = (*accumulatorAddress >> NUM_BITS) & 1;
 	*accumulatorAddress = (*accumulatorAddress << 1) | DROPPED_MSB;
 	MSB = (*accumulatorAddress >> NUM_BITS) & 1;
@@ -437,7 +442,8 @@ int RRC()
 	uint8_t NUM_BITS = 7;
 	uint8_t DROPPED_LSB = 0;	
 	uint8_t MSB = 0;
-	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	flag_t* flagAddress = getFlagsAddress();
 	DROPPED_LSB = *accumulatorAddress & 1;
 	*accumulatorAddress = *accumulatorAddress >> 1;
 	*accumulatorAddress = *accumulatorAddress & (~(1 << NUM_BITS));
@@ -451,8 +457,8 @@ int RAL()
 {
 	uint8_t NUM_BITS = 7;
 	uint8_t DROPPED_MSB = 0;	
-	uint8_t* accumulatorAddress = getRegisterAddress(rA);
-	uint8_t* flagAddress = getFlagsAddress();
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	flag_t* flagAddress = getFlagsAddress();
 	DROPPED_MSB = (*accumulatorAddress >> NUM_BITS) & 1;
 	*accumulatorAddress = (*accumulatorAddress << 1) | DROPPED_MSB;
 	return 0;
@@ -462,7 +468,7 @@ int RAR()
 {
 	uint8_t NUM_BITS = 7;
 	uint8_t DROPPED_LSB = 0;	
-	uint8_t* accumulatorAddress = getRegisterAddress(rA);
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	DROPPED_LSB = *accumulatorAddress & 1;
 	*accumulatorAddress = *accumulatorAddress >> 1;
 	*accumulatorAddress = *accumulatorAddress & (~(1 << NUM_BITS));
@@ -567,6 +573,7 @@ int JPO(mem_t targetAddress)
 
 int CALL(mem_t targetAddress)
 {
+	
 	return 0;
 }
 

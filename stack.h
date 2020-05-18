@@ -1,7 +1,7 @@
 #include "memory.h"
 #include "registers.h"
 
-ifndef _STACK_H_
+#ifndef _STACK_H_
 #define _STACK_H_
 
 /* Declaration of all stack methods go here. */

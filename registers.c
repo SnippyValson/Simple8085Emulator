@@ -6,7 +6,7 @@ uint8_t* getRegister8(register8_t registerName)
 {
 	switch(registerName)
 	{
-		case rA : return &(registers.A);
+		case rA : return &(registers.statusword.status.A);
 		case rB : return &(registers.general.registers8.B);
 		case rC : return &(registers.general.registers8.C);
 		case rD : return &(registers.general.registers8.D);
@@ -27,6 +27,7 @@ uint16_t* getRegister16(register16_t registerName)
 		case rHL : return &(registers.general.registers16.HL);
 		case rSP : return &(registers.SP);
 		case rPC : return &(registers.PC);
+		case rPSW : return &(registers.statusword.psw);
 		default : return 0;
 	}
 	return 0;
@@ -34,5 +35,5 @@ uint16_t* getRegister16(register16_t registerName)
 
 flag_t* getFlagsAddress()
 {
-	return &(registers.FLAGS);
+	return &(registers.statusword.status.FLAGS);
 }

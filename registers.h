@@ -41,23 +41,35 @@ typedef struct {
 	uint8_t filler2 : 1;
 	uint8_t carry : 1;
 	} flag_t;
+
+/* Represents the status word of the 8085 8 */
+typedef struct {
+	uint8_t A;
+	flag_t FLAGS;
+	} status_t;
+
+/* A union to provide an interface to the program status word. */
+typedef union {
+	status_t status;
+	uint16_t psw;
+	} psw_t;
+
 /*
  * Represents the entire registers of 8085.
  * The accumulator, general purpose registers, stack pointer, program counter and the flag register.
  */
 typedef struct {
-	uint8_t 	A;
+	psw_t 		statusword;
 	registersg_t 	general;
 	uint16_t 	PC;
 	uint16_t	SP;
-	flag_t 		FLAGS;
 	} registers_t;	
 
 /* Used to identify each of the 8 bit registers. */
 typedef enum { rA, rB, rC, rD, rE, rH, rL, rFlag } register8_t;
 
 /* used to identify each of the 18 bit registers. */
-typedef enum { rBC, rDE, rHL, rPC, rSP } register16_t;
+typedef enum { rBC, rDE, rHL, rPC, rSP, rPSW } register16_t;
 
 /* The registers. */
 extern registers_t registers;

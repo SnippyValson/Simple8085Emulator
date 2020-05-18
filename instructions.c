@@ -1,6 +1,7 @@
 /* The instruction set of the 8085 micro-processor is defined here. */ 
 #include "instructions.h"
 #include "stack.h"
+#include "ports.h"
 
 int MOV_RR(register8_t destinationRegister, register8_t sourceRegister)
 {
@@ -484,214 +485,321 @@ int JMP(mem_t targetAddress)
 }
 
 int JZ(mem_t targetAddress)
-{
-	uint16_t* pcAddress = getRegister16Address(rPC);
+{;
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->zero == 1)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 }
 
 int JNZ(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->zero == 0)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 } 
 
 int JC(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->carry == 1)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 }
 
 int JNC(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->carry == 0)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 } 
 
 int JP(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->sign == 0)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 } 
 
 int JM(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->sign == 1)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 }
 
 int JPE(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->parity == 1)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 } 
 
 int JPO(mem_t targetAddress)
 {
-	uint16_t* pcAddress = getRegister16Address(rPC);
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->parity == 0)
 	{
-		*pcAddress = targetAddress;
+		JMP();
 	}
 	return 0;
 } 
 
 int CALL(mem_t targetAddress)
 {
-	
+	uint16_t nextAddress = 0;
+	uint8_t MSB = 0;
+	uint8_t LSB = 0;
+	uint16_t MASK = 0x00FF;
+	uint16_t* pcAddress = getRegister16Address(rPC);
+	nextAddress = *pcAddress + 3;
+	LSB =  nextAddress & MASK;
+	MSB = (nextAddress >> 8) & MASK;
+	push(LSB);
+	push(MSB);
+	*pcAddress = targetAddress;	
 	return 0;
 }
 
 int CZ(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 1)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 }
  
 int CNZ(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 0)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 }
 
 int CC(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 1)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 }
 
 int CNC(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 0)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 }
 
 int CP(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 0)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 } 
+
 int CM(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 1)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 } 
 
 int CPE(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->parity == 1)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 } 
 
 int CPO(mem_t targetAddress)
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->parity == 0)
+	{
+		CALL(targetAddress);
+	}
 	return 0;
 } 
 
 int RET()
 {
+	POP(rPC);
 	return 0;
 }
 
 int RZ()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 1)
+	{
+		RET();
+	}
 	return 0;
 }
  
 int RNZ()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 0)
+	{
+		RET();
+	}
 	return 0;
 }
 
 int RC()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 1)
+	{
+		RET();
+	}
 	return 0;
 }
 
 int RNC()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->carry == 0)
+	{
+		RET();
+	}
 	return 0;
 }
 
 int RP()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 0)
+	{
+		RET();
+	}
 	return 0;
 } 
 int RM()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->sign == 1)
+	{
+		RET();
+	}
 	return 0;
 } 
 
 int RPE()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->parity == 1)
+	{
+		RET();
+	}
 	return 0;
 } 
 
 int RPO()
 {
+	flag_t* flagAddress = getFlagsAddress();
+	if(flagAddress->zero == 0)
+	{
+		RET();
+	}
 	return 0;
 } 
 
 int RST(restartLocation_t restartLocation)
 {
+	CALL(restartLocation * 8)
 	return 0;
 }
 
-int IN(mem_t sourcePortAddress)
+int IN(port_t sourcePortAddress)
 {
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	*accumulatorAddress = ports[sourcePortAddress];
 	return 0;
 }
 
-int OUT(mem_t destinationPortAddress)
+int OUT(port_t destinationPortAddress)
 {
+	uint8_t* auumulatorAddress = getRegister8Address(rA);
+	ports[destinationAddress] = *accumulatorAddress;
 	return 0;
 }
 
-int PUSH(register16_t destinationRegister)
+int PUSH(register16_t sourceRegister)
 {
+	uint16_t MASK = 0x00FF;
+	uint16_t* sourceRegisterAddress = getRegister16Address(sourceRegister);
+	uint8_t LSB =  *sourceRegisterAddress | MASK;
+	uint8_t MSB = (*sourceRegisterAddress >> 8) | MASK;
+	push(LSB);
+	push(MSB);
 	return 0;
 }
 
 int PUSH_PSW()
 {
+	PUSH(rPSW);
 	return 0;
 }
 
-int POP(register16_t sourceResgister)
+int POP(register16_t destinationResgister)
 {
+	uint16_t* destinationRegisterAddress = getRegister16Address(destinationRegister);
+	uint8_t MSB = 0;
+	uint8_t LSB = 0;
+	uint16_t buffer = 0;
+	MSB = pop();
+	LSB = pop();
+	buffer = buffer | MSB;
+	buffer = buffer << 8;
+	buffer = buffer | LSB;
+	*destinationRegisterAddress = buffer;
 	return 0;
 }
 
 int POP_PSW()
 {
+	POP(rPSW);
 	return 0;
 }
 
@@ -702,11 +810,22 @@ int HLT()
 
 int XTHL()
 {
+	uint16_t* hlAddress = getRegister16Address(rHL);
+	uint16_t hlValue = *hlAddress;
+	uint16_t MASK = 0x00FF;
+	uint8_t LSB =  hlValue | MASK;
+	uint8_t MSB = (hlValue >> 8) | MASK;
+	POP(rHL);
+	push(LSB);
+	push(MSB);
 	return 0;
 }
 
 int SPHL()
 {
+	uint16_t hlAddress = getRegister16Address(rHL);
+	uint16_t spAddress = getRegister16Address(rSP);
+	*spAddress = *hlAddress;
 	return 0;
 }
 

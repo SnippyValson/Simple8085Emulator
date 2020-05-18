@@ -100,8 +100,8 @@ int RPO();
 int RST(restartLocation_t restartLocation);
 
 /* Stack, I/O, and Machine Control Group. */
-int IN(mem_t sourcePortAddress);
-int OUT(mem_t destinationPortAddress);
+int IN(port_t sourcePortAddress);
+int OUT(port_t destinationPortAddress);
 int PUSH(register16_t destinationRegister);
 int PUSH_PSW();
 int POP(register16_t sourceResgister);

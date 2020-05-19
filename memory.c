@@ -6,7 +6,7 @@ uint8_t  memory[65535];
 int initializeMemory()
 {
 	int i = 0;
-	for( i = 0; i < 65535; i++ )
+	for( i = 0; i < 65536; i++ )
 	{
 		memory[i] = 0;
 	}

@@ -489,7 +489,7 @@ int JZ(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->zero == 1)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 }
@@ -499,7 +499,7 @@ int JNZ(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->zero == 0)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 } 
@@ -509,7 +509,7 @@ int JC(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->carry == 1)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 }
@@ -519,7 +519,7 @@ int JNC(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->carry == 0)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 } 
@@ -529,7 +529,7 @@ int JP(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->sign == 0)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 } 
@@ -539,7 +539,7 @@ int JM(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->sign == 1)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 }
@@ -549,7 +549,7 @@ int JPE(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->parity == 1)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 } 
@@ -559,7 +559,7 @@ int JPO(mem_t targetAddress)
 	flag_t* flagAddress = getFlagsAddress();
 	if(flagAddress->parity == 0)
 	{
-		JMP();
+		JMP(targetAddress);
 	}
 	return 0;
 } 
@@ -747,7 +747,7 @@ int RPO()
 
 int RST(restartLocation_t restartLocation)
 {
-	CALL(restartLocation * 8)
+	CALL(restartLocation * 8);
 	return 0;
 }
 
@@ -760,8 +760,8 @@ int IN(port_t sourcePortAddress)
 
 int OUT(port_t destinationPortAddress)
 {
-	uint8_t* auumulatorAddress = getRegister8Address(rA);
-	ports[destinationAddress] = *accumulatorAddress;
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	ports[destinationPortAddress] = *accumulatorAddress;
 	return 0;
 }
 
@@ -782,7 +782,7 @@ int PUSH_PSW()
 	return 0;
 }
 
-int POP(register16_t destinationResgister)
+int POP(register16_t destinationRegister)
 {
 	uint16_t* destinationRegisterAddress = getRegister16Address(destinationRegister);
 	uint8_t MSB = 0;
@@ -823,8 +823,8 @@ int XTHL()
 
 int SPHL()
 {
-	uint16_t hlAddress = getRegister16Address(rHL);
-	uint16_t spAddress = getRegister16Address(rSP);
+	uint16_t* hlAddress = getRegister16Address(rHL);
+	uint16_t* spAddress = getRegister16Address(rSP);
 	*spAddress = *hlAddress;
 	return 0;
 }

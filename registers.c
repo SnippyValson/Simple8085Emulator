@@ -2,7 +2,7 @@
 
 registers_t registers;
 
-uint8_t* getRegister8(register8_t registerName)
+uint8_t* getRegister8Address(register8_t registerName)
 {
 	switch(registerName)
 	{
@@ -18,7 +18,7 @@ uint8_t* getRegister8(register8_t registerName)
 	return 0;	
 }
 
-uint16_t* getRegister16(register16_t registerName)
+uint16_t* getRegister16Address(register16_t registerName)
 {
 	switch(registerName)
 	{

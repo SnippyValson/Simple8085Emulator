@@ -1,5 +1,7 @@
 #include "registers.h"
 #include "memory.h"
+#include "ports.h"
+#include "stack.h"
 
 #ifndef _INSTRUCTIONS_H_
 #define _INSTRUCTIONS_H_

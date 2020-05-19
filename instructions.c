@@ -43,7 +43,7 @@ int MVI_MD(uint8_t data8)
 
 int LXI(register16_t destinationRegisterPair, uint16_t data16)
 {
-	uint16_t* destinationRegisterAddress = getRegister16Address(rHL);
+	uint16_t* destinationRegisterAddress = getRegister16Address(destinationRegisterPair);
 	*destinationRegisterAddress = data16;
 	return 0;
 }

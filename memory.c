@@ -1,6 +1,6 @@
 #include "memory.h"
 
-uint8_t  memory[65535];
+uint8_t  memory[65536];
 
 /* Initialize the main memory of the 8085 with 0s. */ 
 int initializeMemory()

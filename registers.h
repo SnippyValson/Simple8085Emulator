@@ -7,12 +7,12 @@
 
 /* Represents the 8 bit general purpose registers. */
 typedef struct {
-	 uint8_t B;
 	 uint8_t C;
-	 uint8_t D;
+	 uint8_t B;
 	 uint8_t E;
-	 uint8_t H;
+	 uint8_t D;
 	 uint8_t L;
+	 uint8_t H;
 	} registers8_t;
 
 /* Represents the 16 bit general purpose registers. */

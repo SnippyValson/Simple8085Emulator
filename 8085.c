@@ -51,8 +51,8 @@ void printPorts()
 
 void printStack()
 {
-	//uint16_t* spAddress = getRegister16Address(rSP);
-	//printf("Stack Top => %02hhX", memory[*spAddress]);
+	uint16_t* spAddress = getRegister16Address(rSP);
+	printf("Stack Top => %02hhX", memory[*spAddress]);
 }
 
 void loadHEX()

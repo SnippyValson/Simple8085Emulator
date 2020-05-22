@@ -64,15 +64,23 @@ int STA(mem_t destinationMemoryAddress)
 
 int LHLD(mem_t sourceMemoryAddress)
 {
-	uint16_t* hlAddress = getRegister16Address(rHL);
-	*hlAddress = memory[sourceMemoryAddress];
+	uint8_t* hAddress = getRegister8Address(rH);
+	uint8_t* lAddress = getRegister8Address(rL);
+	uint8_t LSB = memory[sourceMemoryAddress];
+	uint8_t MSB = memory[sourceMemoryAddress + 1];
+	*lAddress = LSB;
+	*hAddress = MSB;
 	return 0;
 }
 
 int SHLD(mem_t destinationMemoryAddress)
 {
+	uint8_t MASK = 0x00FF;
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	memory[destinationMemoryAddress] = *hlAddress;
+	uint8_t LSB = *hlAddress & MASK;
+	uint8_t MSB = (*hlAddress >> 8) & MASK;
+	memory[destinationMemoryAddress] = LSB;
+	memory[destinationMemoryAddress + 1] = MSB;
 	return 0;
 }
 
@@ -110,55 +118,61 @@ int PCHL()
 	return 0;
 }
 
+void addToAccumulator(uint8_t operandValue)
+{
+	flag_t* flagsAddress = getFlagsAddress();
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	short accumulatorValue = flagsAddress->sign ? -(~*accumulatorAddress + 1) : *accumulatorAddress;
+	flagsAddress->carry =  (accumulatorValue + operandValue) > 255;
+	flagsAddress->sign = (accumulatorValue + operandValue) < 0;
+	*accumulatorAddress = accumulatorValue + operandValue;
+	updateParityAndZeroFlags();
+}
+
 int ADD(register8_t operandRegister)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	*accumulatorAddress = *accumulatorAddress + *operandRegisterAddress; 
+	addToAccumulator(*operandRegisterAddress);
 	return 0;
 }
 
 int ADD_M()
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	*accumulatorAddress = *accumulatorAddress + memory[*hlAddress];
+	addToAccumulator([memory[*hlAddress]);
 	return 0;
 }
 
 int ADC(register8_t operandRegister)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	flag_t* flagAddress = getFlagsAddress();
+	flagt_t* flagsAddress = getFlagsAddress();
 	uint8_t carry = flagAddress->carry; 
-	*accumulatorAddress = *accumulatorAddress + *operandRegisterAddress + carry;
+	ADD(operandRegister);
+	addToAccumulator(carry);
 	return 0;
 }
 
 int ADC_M()
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	uint16_t* hlAddress = getRegister16Address(rHL);
 	flag_t* flagAddress = getFlagsAddress();
 	uint8_t carry = flagAddress->carry;  
-	*accumulatorAddress = *accumulatorAddress + memory[*hlAddress] + carry;
+	ADD_M();
+	addToAccumulator(carry;)
 	return 0;
 }
 
 int ADI(uint8_t data8)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	*accumulatorAddress = *accumulatorAddress + data8;
+	addToAccumulator(data8);
 	return 0;
 }
 
 int ACI(uint8_t data8)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	flag_t* flagAddress = getFlagsAddress();
 	uint8_t carry = flagAddress->carry; 
-	*accumulatorAddress = *accumulatorAddress + data8 + carry;
+	addToAccumulator(data8);
+	addToAccumulator(carry);
 	return 0;
 }
 
@@ -167,62 +181,78 @@ int DAD(register16_t operandRegister)
 	return 0;
 }
 
+void subtractFromAccumulator(uint8_t operandValue)
+{
+	flag_t* flagsAddress = getFlagsAddress();
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	short accumulatorValue = flagsAddress->sign ? -(~*accumulatorAddress + 1) : *accumulatorAddress;
+	flagsAddress->carry =  (accumulatorValue - operandValue) < 0;
+	flagsAddress->sign = (accumulatorValue - operandValue) < 0;
+	*accumulatorAddress = accumulatorValue - operandValue;
+	updateParityAndZeroFlags();	
+}
+
 int SUB(register8_t operandRegister)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	*accumulatorAddress = *accumulatorAddress - *operandRegisterAddress; 
+	subtractFromAccumulator(*operandRegister);
 	return 0;
 }
 
 int SUB_M()
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	*accumulatorAddress = *accumulatorAddress - memory[*hlAddress];
- 	return 0;
+ 	subtractFromAccumulator(memory[*hlAddress]);
+	return 0;
 }
 
 int SBB(register8_t operandRegister)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	flag_t* flagAddress = getFlagsAddress();
 	uint8_t borrow = flagAddress->carry; 
-	*accumulatorAddress = *accumulatorAddress - *operandRegisterAddress - borrow;
+	subtractFromAccumulator(*operandRegister);
+	subtractFromAccumulator(borrow);
 	return 0;
 }
 
 int SBB_M()
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	uint16_t* hlAddress = getRegister16Address(rHL);
-	flag_t* flagAddress = getFlagsAddress();
 	uint8_t borrow = flagAddress->carry; 
-	*accumulatorAddress = *accumulatorAddress - memory[*hlAddress] - borrow;
+	subtractFromAccumulator(memory[*hlAddress]);
+	subtractFromAccumulator(borrow);
 	return 0;
 }
 
 int SUI(uint8_t data8)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
-	*accumulatorAddress = *accumulatorAddress - data8;
+	subtractFromAccumulator(data8);
 	return 0;
 }
 
 int SBI(uint8_t data8)
 {
-	uint8_t* accumulatorAddress = getRegister8Address(rA);
 	flag_t* flagAddress = getFlagsAddress();
 	uint8_t borrow = flagAddress->carry; 
-	*accumulatorAddress = *accumulatorAddress - data8 - borrow;
- 	return 0;
+ 	subtractFromAccumulator(data8);
+	subtractFromAccumulator(borrow);
+	return 0;
 }
 
 int INR(register8_t operandRegister)
 {
-	uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
-	(*operandRegisterAddress)++;
+	flag_t* flagsAddress = getFlagsAddress();
+	uint8_t previousCarry = flagsAddress->carry;
+	if(operandRegister != rA)
+	{
+		uint8_t* operandRegisterAddress = getRegister8Address(operandRegister);
+		(*operandRegisterAddress)++;
+	}
+	else
+	{
+		addToAccumulator(1);
+		flagsAddress->carry = previousCarry;
+	}
 	return 0;
 }
 
@@ -852,4 +882,12 @@ int RIM()
 int NOP()
 {
 	return 0;
+}
+
+void updateParityAndZeroFlags()
+{
+	uint8_t* accumulatorAddress = getRegister8Address(rA);
+	flag_t* flagsAddress = getFlagsAddress();
+	flagsAddress->zero = *accumulatorAddress == 0;
+	flagsAddress->parity = !((((*accumulatorAddress * 0x0101010101010101ULL) & 0x8040201008040201ULL) % 0x1FF) & 1);
 }
